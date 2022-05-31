@@ -23,4 +23,4 @@ const routes = require("./src/routes/index");
 app.use("/", routes);
 
 const port = process.env.PORT || 3000;
-app.listen(port, () => logger.info("Connecting to " + app.address().port));
+app.listen(port, () => logger.info("Connecting to " + port));
