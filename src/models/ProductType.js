@@ -2,8 +2,8 @@ const { DataTypes } = require("sequelize");
 const sequelize = require("../database/connection");
 const { getCurrentTimeInTimestamp } = require("../utils/getCurrentTimeInTimestamp");
 
-const Product = sequelize.define(
-  "Product",
+const ProductType = sequelize.define(
+  "ProductType",
   {
     id: {
       type: DataTypes.INTEGER(11),
@@ -22,14 +22,14 @@ const Product = sequelize.define(
   {
     timestamps: false,
     hooks: {
-      beforeCreate(product) {
-        product.created_at = getCurrentTimeInTimestamp();
-        product.updated_at = getCurrentTimeInTimestamp();
+      beforeCreate(product_type) {
+        product_type.created_at = getCurrentTimeInTimestamp();
+        product_type.updated_at = getCurrentTimeInTimestamp();
       },
-      beforeSave(product) {
-        product.updated_at = getCurrentTimeInTimestamp();
+      beforeSave(product_type) {
+        product_type.updated_at = getCurrentTimeInTimestamp();
       },
     },
   }
 );
-module.exports = Product;
+module.exports = ProductType;
