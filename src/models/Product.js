@@ -1,6 +1,8 @@
 const { DataTypes } = require("sequelize");
 const sequelize = require("../database/connection");
-const { getCurrentTimeInTimestamp } = require("../utils/getCurrentTimeInTimestamp");
+const {
+  getCurrentTimeInTimestamp,
+} = require("../utils/getCurrentTimeInTimestamp");
 
 const Product = sequelize.define(
   "Product",
@@ -32,4 +34,16 @@ const Product = sequelize.define(
     },
   }
 );
+Product.hasMany(AssignedAttribute, {
+  foreignKey: "AssignedAttributes",
+});
+AssignedAttribute.belongsTo(Product, {
+  foreignKey: "AssignedAttributes",
+});
+Product.hasOne(ProductType, {
+  foreignKey: "ProductType",
+});
+ProductType.belongsTo(Product, {
+  foreignKey: "ProductType",
+});
 module.exports = Product;
